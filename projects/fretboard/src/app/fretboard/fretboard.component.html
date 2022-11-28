@@ -1,20 +1,12 @@
-<div class="fretboard-container" >
+<div class="fretboard-container">
+  <div class="fretboard-visual">
+    <div *ngFor="let fret of fretsArray; let i = index" class="fret-visual">
+      <div class="dot" *ngIf="i === 3 || i === 5 || i === 7 || i === 12"></div>
+      <div class="dot" *ngIf="i === 7 || i === 12"></div>
 
-  <div class="fretboard-visual" >
-    <div
-      *ngFor="let fret of fretsArray;let i = index"
-      class="fret-visual"
-    >
-
-      <div class="dot" *ngIf="i===3 || i===5 || i===7 || i===12"></div>
-      <div class="dot" *ngIf="i===7 || i===12"></div>
-
-      <div style="position: absolute;bottom: -20px">{{i}}.</div>
-
+      <div style="position: absolute; bottom: -20px">{{ i }}.</div>
     </div>
   </div>
-
-
 
   <div class="fretboard">
     <div class="string" *ngFor="let string of stringObjects">
@@ -32,7 +24,6 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <div>
@@ -62,14 +53,26 @@
   </select>
 </div>
 
-<input type="checkbox" [value]="showNotesNotInScale" (click)="showNotesNotInScale = !showNotesNotInScale" >
+<input
+  type="checkbox"
+  [value]="showNotesNotInScale"
+  (click)="showNotesNotInScale = !showNotesNotInScale"
+/>
 
-
-<input #frets_input type="range" [min]="0" [max]="24" [value]="frets" (mouseup)="updateFretsNum(frets_input.value)">
+<input
+  #frets_input
+  type="range"
+  [min]="0"
+  [max]="24"
+  [value]="frets"
+  (mouseup)="updateFretsNum(frets_input.value)"
+/>
 
 <button (click)="addStep()">Record</button>
 <button (click)="playSteps()">Play</button>
 
 <div>
-  <div (click)="setStep(step)" *ngFor="let step of steps; let i = index">{{i}}</div>
+  <div (click)="setStep(step)" *ngFor="let step of steps; let i = index">
+    {{ i }}
+  </div>
 </div>

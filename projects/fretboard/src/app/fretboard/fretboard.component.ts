@@ -39,10 +39,7 @@ export interface RecordedNote {
   styleUrls: ['./fretboard.component.scss'],
 })
 export class FretboardComponent implements OnInit {
-
-
   steps: any = [];
-
 
   frets = 22;
 
@@ -147,6 +144,7 @@ export class FretboardComponent implements OnInit {
   onScale(event: any, rootNote: string) {
     this.highlightScale(rootNote, this.scales[event.target.value]);
   }
+
   highlightScale(rootNote: string, scale: Scale, filter?: number[]) {
     this.clearAllSelected();
     const steps = scale.intervals;
@@ -198,10 +196,11 @@ export class FretboardComponent implements OnInit {
       });
     });
 
-    step.notes.forEach((recordedNote: any)=>{
-      const note = this.stringObjects[recordedNote.stringNum].notes[recordedNote.noteNum];
+    step.notes.forEach((recordedNote: any) => {
+      const note =
+        this.stringObjects[recordedNote.stringNum].notes[recordedNote.noteNum];
       note.selected = true;
-      this.playNote(note)
+      this.playNote(note);
     });
   }
 
@@ -212,22 +211,22 @@ export class FretboardComponent implements OnInit {
         if (note.selected) {
           notes.push({
             stringNum,
-            noteNum
+            noteNum,
           });
         }
       });
     });
     this.steps.push({
       notes,
-      active: false
+      active: false,
     });
   }
 
   playSteps() {
     let count = 0;
-    let id = setInterval(()=>{
+    let id = setInterval(() => {
       this.setStep(this.steps[count]);
-      count ++;
+      count++;
       if (count >= this.steps.length) {
         clearInterval(id);
       }
